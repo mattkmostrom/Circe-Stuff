@@ -1,0 +1,19 @@
+! hf 6-31G* chelpg allpop
+
+%pal
+nprocs 128 #64 #1024
+end
+
+%scf
+maxiter 2000
+end
+
+%geom
+Constraints
+{C 1 C}
+{C 292 C}
+end
+end
+
+*xyz 0 1
+[add "ATOM x y z" here]
