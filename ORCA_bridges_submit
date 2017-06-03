@@ -1,0 +1,23 @@
+#!/bin/bash
+#SBATCH --job-name="Orca job"
+#SBATCH --output="slurm.%j.%N.out"
+#SBATCH --partition=RM
+#SBATCH --nodes=1
+#SBATCH --ntasks-per-node=28
+#SBATCH --export=ALL
+#SBATCH -t 00:30:00
+
+# Set up job
+export JOBDIR="$LOCAL/$USER/$SLURM_JOB_ID"
+#export JOBDIR="/pylon2/ch3benp/$USER"
+mkdir $JOBDIR
+cd $JOBDIR
+cp $SLURM_SUBMIT_DIR/*.inp .
+
+~/orca_4_0_0_2_linux_x86-64/orca *.inp > runlog.log
+
+ls -ltrh .
+du -h .
+
+# Clean up and copy back files
+rsync runlog.log *.xyz *.trj *.prop *.gbw *.opt $SLURM_SUBMIT_DIR
