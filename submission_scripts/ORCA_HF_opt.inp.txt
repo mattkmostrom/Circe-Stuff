@@ -1,0 +1,19 @@
+! hf 3-21G ecp{} opt # optimize
+
+%pal
+nprocs 128 #64 #1024
+end
+
+%scf
+maxiter 2000
+end
+
+%geom
+Constraints
+{C 1 C}
+{C 292 C}
+end
+end
+
+*xyz 10 1 # CHARGE = +8 (cage) +2 (Ru-bpy), mult 2S+1 = 1 (CS)
+[add "ATOM x y z" here]

@@ -1,0 +1,10 @@
+#!/bin/bash
+
+#SBATCH -n 4 -J COFfrag5_charge -t 168:00:00 -p circe --mail-type=END --mail-user=matthewmostrom@gmail.com -o 5_charge_runlog.log 
+
+module purge
+module load apps/nwchem/6.1.1
+
+mpirun -np 12 nwchem *.inp
+
+
